@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FeedbackPro.Models;
 
 public partial class Feedback
 {
+    [Key]
     public long Id { get; set; }
 
     public long? FormId { get; set; }
@@ -32,4 +33,10 @@ public partial class Feedback
     public DateTime EntryDate { get; set; }
 
     public bool IsActive { get; set; }
+
+    [NotMapped]
+    public IList<FeedbackDetail> FeedbackDetail { get; set; }
 }
+
+
+

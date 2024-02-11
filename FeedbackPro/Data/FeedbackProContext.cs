@@ -1,5 +1,7 @@
 ﻿using FeedbackPro.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Data.Common;
 
 namespace FeedbackPro.Data;
 
@@ -15,6 +17,11 @@ public partial class FeedbackProContext : DbContext
     {
     }
 
+    public DbConnection GetConnection()
+    {
+        return Database.GetDbConnection();
+    }
+        
     public virtual DbSet<Feedback> Feedbacks { get; set; }
 
     public virtual DbSet<FeedbackDetail> FeedbackDetails { get; set; }
@@ -54,11 +61,13 @@ public partial class FeedbackProContext : DbContext
                 .HasNoKey()
                 .ToTable("Feedback");
 
+            entity.HasKey(e => e.Id);
+
             entity.Property(e => e.CompanyId).HasColumnName("CompanyID");
             entity.Property(e => e.EntryDate).HasColumnType("datetime");
             entity.Property(e => e.EntryUserId).HasColumnName("EntryUserID");
             entity.Property(e => e.FormId).HasColumnName("FormID");
-            entity.Property(e => e.Id).HasColumnName("ID");
+            //entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.QrcodeId).HasColumnName("QRCodeID");
             entity.Property(e => e.SubmitterDeviceType)
                 .HasMaxLength(100)
@@ -84,11 +93,16 @@ public partial class FeedbackProContext : DbContext
             entity.Property(e => e.SubmitterPhone)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+
+
+
         });
 
         modelBuilder.Entity<FeedbackDetail>(entity =>
         {
             entity.HasNoKey();
+
+            entity.HasKey(e => e.Id);
 
             entity.Property(e => e.CompanyId).HasColumnName("CompanyID");
             entity.Property(e => e.EntryDate).HasColumnType("datetime");
@@ -104,7 +118,7 @@ public partial class FeedbackProContext : DbContext
             entity.Property(e => e.FormFieldValue)
                 .HasMaxLength(200)
                 .IsUnicode(false);
-            entity.Property(e => e.Id).HasColumnName("ID");
+            //entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.RefFieldTypeId).HasColumnName("RefFieldTypeID");
         });
 

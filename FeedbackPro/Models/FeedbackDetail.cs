@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FeedbackPro.Models;
 
 public partial class FeedbackDetail
 {
+    [Key]
     public long Id { get; set; }
 
     public long? FeedbackId { get; set; }
