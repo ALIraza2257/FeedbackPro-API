@@ -23,9 +23,7 @@ namespace FeedbackPro.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-
-
-
+            //Faraz
             var counts = await _db.FeedbackDetails.Where(x => x.FormFieldId != 7)
                    .GroupBy(item => new { item.FormFieldValue })
                      .Select(g => new
