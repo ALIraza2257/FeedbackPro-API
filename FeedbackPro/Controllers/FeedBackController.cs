@@ -1,5 +1,4 @@
-﻿
-using FeedbackPro.Data;
+﻿using FeedbackPro.Data;
 using FeedbackPro.DTO;
 using FeedbackPro.Models;
 using FeedbackPro.VM;
@@ -11,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FeedbackPro.Controllers
 {
-    //[EnableCors("OpenCORSPolicy")]
     [ApiController]
     [Route("[controller]")]
     public class FeedbackController : ControllerBase
@@ -57,10 +55,7 @@ namespace FeedbackPro.Controllers
             catch (Exception ex) {
                 return Ok(new { result = false, Data = "", message = ex.Message });
             }
-            
         }
-
-
         [Route("/Api/Feedback")]
         [HttpPost]
         public async Task<IActionResult> Feedback(Feedback Feedback)

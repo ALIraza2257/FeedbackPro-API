@@ -30,4 +30,12 @@ public partial class Qrcode
     public DateTime EntryDate { get; set; }
 
     public bool IsActive { get; set; }
+
+    public string Registration
+    {
+        get
+        {
+            return string.Format("{0} {1}",RefData1Caption,RefData1Value);
+        }
+    }
 }
