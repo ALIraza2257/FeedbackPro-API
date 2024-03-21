@@ -22,7 +22,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 var app = builder.Build();
 
 //kh
-
+//wew
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
